@@ -40,7 +40,7 @@
             // 
             this.lbl_title.AutoSize = true;
             this.lbl_title.Font = new System.Drawing.Font("Bookman Old Style", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lbl_title.Location = new System.Drawing.Point(300, 15);
+            this.lbl_title.Location = new System.Drawing.Point(253, 15);
             this.lbl_title.Name = "lbl_title";
             this.lbl_title.Size = new System.Drawing.Size(84, 24);
             this.lbl_title.TabIndex = 0;

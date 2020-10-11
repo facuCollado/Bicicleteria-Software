@@ -37,5 +37,10 @@ namespace BarbosaSoft
             f1.ShowDialog();
             this.Close();
         }
+
+        private void lbl_lastname_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

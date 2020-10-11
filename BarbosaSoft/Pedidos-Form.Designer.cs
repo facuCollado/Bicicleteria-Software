@@ -67,18 +67,19 @@
             this.lbl_name.AutoSize = true;
             this.lbl_name.Location = new System.Drawing.Point(43, 60);
             this.lbl_name.Name = "lbl_name";
-            this.lbl_name.Size = new System.Drawing.Size(44, 13);
+            this.lbl_name.Size = new System.Drawing.Size(54, 13);
             this.lbl_name.TabIndex = 1;
-            this.lbl_name.Text = "Nombre";
+            this.lbl_name.Text = "Nombre/s";
             // 
             // lbl_lastname
             // 
             this.lbl_lastname.AutoSize = true;
             this.lbl_lastname.Location = new System.Drawing.Point(343, 60);
             this.lbl_lastname.Name = "lbl_lastname";
-            this.lbl_lastname.Size = new System.Drawing.Size(44, 13);
+            this.lbl_lastname.Size = new System.Drawing.Size(54, 13);
             this.lbl_lastname.TabIndex = 2;
-            this.lbl_lastname.Text = "Apellido";
+            this.lbl_lastname.Text = "Apellido/s";
+            this.lbl_lastname.Click += new System.EventHandler(this.lbl_lastname_Click);
             // 
             // lbl_tel
             // 
@@ -92,7 +93,7 @@
             // lbl_email
             // 
             this.lbl_email.AutoSize = true;
-            this.lbl_email.Location = new System.Drawing.Point(343, 114);
+            this.lbl_email.Location = new System.Drawing.Point(343, 117);
             this.lbl_email.Name = "lbl_email";
             this.lbl_email.Size = new System.Drawing.Size(32, 13);
             this.lbl_email.TabIndex = 4;
@@ -109,21 +110,21 @@
             // 
             // txt_name
             // 
-            this.txt_name.Location = new System.Drawing.Point(107, 60);
+            this.txt_name.Location = new System.Drawing.Point(107, 57);
             this.txt_name.Name = "txt_name";
             this.txt_name.Size = new System.Drawing.Size(145, 20);
             this.txt_name.TabIndex = 2;
             // 
             // txt_email
             // 
-            this.txt_email.Location = new System.Drawing.Point(393, 107);
+            this.txt_email.Location = new System.Drawing.Point(403, 114);
             this.txt_email.Name = "txt_email";
             this.txt_email.Size = new System.Drawing.Size(145, 20);
             this.txt_email.TabIndex = 5;
             // 
             // txt_lastname
             // 
-            this.txt_lastname.Location = new System.Drawing.Point(393, 57);
+            this.txt_lastname.Location = new System.Drawing.Point(403, 57);
             this.txt_lastname.Name = "txt_lastname";
             this.txt_lastname.Size = new System.Drawing.Size(145, 20);
             this.txt_lastname.TabIndex = 3;
@@ -138,7 +139,7 @@
             // lbl_date
             // 
             this.lbl_date.AutoSize = true;
-            this.lbl_date.Location = new System.Drawing.Point(9, 461);
+            this.lbl_date.Location = new System.Drawing.Point(43, 9);
             this.lbl_date.Name = "lbl_date";
             this.lbl_date.Size = new System.Drawing.Size(34, 13);
             this.lbl_date.TabIndex = 10;
@@ -147,7 +148,7 @@
             // lbl_time
             // 
             this.lbl_time.AutoSize = true;
-            this.lbl_time.Location = new System.Drawing.Point(564, 461);
+            this.lbl_time.Location = new System.Drawing.Point(574, 9);
             this.lbl_time.Name = "lbl_time";
             this.lbl_time.Size = new System.Drawing.Size(26, 13);
             this.lbl_time.TabIndex = 11;
@@ -160,9 +161,9 @@
             // 
             // txt_description
             // 
-            this.txt_description.Location = new System.Drawing.Point(132, 183);
+            this.txt_description.Location = new System.Drawing.Point(112, 180);
             this.txt_description.Name = "txt_description";
-            this.txt_description.Size = new System.Drawing.Size(406, 101);
+            this.txt_description.Size = new System.Drawing.Size(426, 101);
             this.txt_description.TabIndex = 6;
             this.txt_description.Text = "";
             // 
@@ -171,9 +172,9 @@
             this.btn_back.BackColor = System.Drawing.Color.LightSlateGray;
             this.btn_back.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btn_back.ForeColor = System.Drawing.Color.White;
-            this.btn_back.Location = new System.Drawing.Point(12, 9);
+            this.btn_back.Location = new System.Drawing.Point(561, 438);
             this.btn_back.Name = "btn_back";
-            this.btn_back.Size = new System.Drawing.Size(103, 33);
+            this.btn_back.Size = new System.Drawing.Size(73, 33);
             this.btn_back.TabIndex = 1;
             this.btn_back.Text = "Volver";
             this.btn_back.UseVisualStyleBackColor = false;
@@ -182,7 +183,7 @@
             // lbl_itemList
             // 
             this.lbl_itemList.AutoSize = true;
-            this.lbl_itemList.Location = new System.Drawing.Point(52, 321);
+            this.lbl_itemList.Location = new System.Drawing.Point(43, 321);
             this.lbl_itemList.Name = "lbl_itemList";
             this.lbl_itemList.Size = new System.Drawing.Size(56, 13);
             this.lbl_itemList.TabIndex = 12;
@@ -193,7 +194,7 @@
             this.btn_accept.BackColor = System.Drawing.Color.LightSlateGray;
             this.btn_accept.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btn_accept.ForeColor = System.Drawing.Color.White;
-            this.btn_accept.Location = new System.Drawing.Point(272, 407);
+            this.btn_accept.Location = new System.Drawing.Point(244, 407);
             this.btn_accept.Name = "btn_accept";
             this.btn_accept.Size = new System.Drawing.Size(103, 33);
             this.btn_accept.TabIndex = 13;
@@ -205,7 +206,7 @@
             this.btn_cancelar.BackColor = System.Drawing.Color.LightSlateGray;
             this.btn_cancelar.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btn_cancelar.ForeColor = System.Drawing.Color.White;
-            this.btn_cancelar.Location = new System.Drawing.Point(527, 407);
+            this.btn_cancelar.Location = new System.Drawing.Point(482, 438);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(73, 33);
             this.btn_cancelar.TabIndex = 14;
@@ -214,16 +215,16 @@
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(132, 309);
+            this.richTextBox2.Location = new System.Drawing.Point(112, 314);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(120, 56);
+            this.richTextBox2.Size = new System.Drawing.Size(140, 56);
             this.richTextBox2.TabIndex = 15;
             this.richTextBox2.Text = "aca la idea sería agregar por ej  cambio de cadena --> 100$";
             // 
             // lbl_total
             // 
             this.lbl_total.AutoSize = true;
-            this.lbl_total.Location = new System.Drawing.Point(343, 321);
+            this.lbl_total.Location = new System.Drawing.Point(343, 318);
             this.lbl_total.Name = "lbl_total";
             this.lbl_total.Size = new System.Drawing.Size(31, 13);
             this.lbl_total.TabIndex = 16;
@@ -231,7 +232,7 @@
             // 
             // txt_total
             // 
-            this.txt_total.Location = new System.Drawing.Point(393, 318);
+            this.txt_total.Location = new System.Drawing.Point(393, 314);
             this.txt_total.Name = "txt_total";
             this.txt_total.Size = new System.Drawing.Size(145, 20);
             this.txt_total.TabIndex = 17;
