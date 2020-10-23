@@ -50,6 +50,10 @@
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.lbl_total = new System.Windows.Forms.Label();
             this.txt_total = new System.Windows.Forms.TextBox();
+            this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pedidosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pedidosBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // title
@@ -147,7 +151,7 @@
             // lbl_time
             // 
             this.lbl_time.AutoSize = true;
-            this.lbl_time.Location = new System.Drawing.Point(564, 461);
+            this.lbl_time.Location = new System.Drawing.Point(535, 461);
             this.lbl_time.Name = "lbl_time";
             this.lbl_time.Size = new System.Drawing.Size(26, 13);
             this.lbl_time.TabIndex = 11;
@@ -196,9 +200,10 @@
             this.btn_accept.Location = new System.Drawing.Point(272, 407);
             this.btn_accept.Name = "btn_accept";
             this.btn_accept.Size = new System.Drawing.Size(103, 33);
-            this.btn_accept.TabIndex = 13;
+            this.btn_accept.TabIndex = 9;
             this.btn_accept.Text = "Aceptar";
             this.btn_accept.UseVisualStyleBackColor = false;
+            this.btn_accept.Click += new System.EventHandler(this.btn_accept_Click);
             // 
             // btn_cancelar
             // 
@@ -208,7 +213,7 @@
             this.btn_cancelar.Location = new System.Drawing.Point(527, 407);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(73, 33);
-            this.btn_cancelar.TabIndex = 14;
+            this.btn_cancelar.TabIndex = 10;
             this.btn_cancelar.Text = "Cancelar";
             this.btn_cancelar.UseVisualStyleBackColor = false;
             // 
@@ -217,7 +222,7 @@
             this.richTextBox2.Location = new System.Drawing.Point(132, 309);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(120, 56);
-            this.richTextBox2.TabIndex = 15;
+            this.richTextBox2.TabIndex = 7;
             this.richTextBox2.Text = "aca la idea sería agregar por ej  cambio de cadena --> 100$";
             // 
             // lbl_total
@@ -234,14 +239,14 @@
             this.txt_total.Location = new System.Drawing.Point(393, 318);
             this.txt_total.Name = "txt_total";
             this.txt_total.Size = new System.Drawing.Size(145, 20);
-            this.txt_total.TabIndex = 17;
+            this.txt_total.TabIndex = 8;
             // 
             // Pedidos_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(642, 483);
+            this.ClientSize = new System.Drawing.Size(628, 494);
             this.Controls.Add(this.txt_total);
             this.Controls.Add(this.lbl_total);
             this.Controls.Add(this.richTextBox2);
@@ -265,6 +270,8 @@
             this.Name = "Pedidos_Form";
             this.Text = "Nuevo Pedido";
             this.Load += new System.EventHandler(this.Pedidos_Form_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pedidosBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,5 +300,7 @@
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Label lbl_total;
         private System.Windows.Forms.TextBox txt_total;
+        private System.Windows.Forms.BindingSource clientesBindingSource;
+        private System.Windows.Forms.BindingSource pedidosBindingSource;
     }
 }

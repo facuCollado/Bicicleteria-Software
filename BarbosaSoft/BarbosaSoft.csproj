@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BicicleteriaDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BicicleteriaDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Compras-Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +107,17 @@
     <EmbeddedResource Include="Ventas-Form.resx">
       <DependentUpon>Ventas-Form.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="BicicleteriaDBDataSet.xsc">
+      <DependentUpon>BicicleteriaDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="BicicleteriaDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BicicleteriaDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BicicleteriaDBDataSet.xss">
+      <DependentUpon>BicicleteriaDBDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

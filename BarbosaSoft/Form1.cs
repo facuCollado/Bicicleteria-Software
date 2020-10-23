@@ -33,7 +33,8 @@ namespace BarbosaSoft
 
         private void btn_orderList_Click(object sender, EventArgs e)    //btn Lista Pedidos
         {
-            this.Hide();
+            this.Hide(); 
+            
             ListaPedidos_Form lista_pedidos = new ListaPedidos_Form();
             lista_pedidos.ShowDialog();
             this.Close();
