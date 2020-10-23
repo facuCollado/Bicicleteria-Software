@@ -17,25 +17,21 @@ namespace BarbosaSoft
             InitializeComponent();
         }
 
-        private void btn_back_Click(object sender, EventArgs e) //btn back
+        private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form1 f1 = new Form1();
-            f1.ShowDialog();
-            this.Close();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            lbl_time.Text = DateTime.Now.ToLongTimeString();
-            timer1.Start();
+            Form1 fr = new Form1();
+            fr.Show();
         }
 
         private void Compras_Form_Load(object sender, EventArgs e)
         {
-            timer1.Start();
-            lbl_date.Text = DateTime.Now.ToLongDateString();
-            lbl_time.Text = DateTime.Now.ToLongTimeString();
+            
+        }
+
+        private void lbl_title_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

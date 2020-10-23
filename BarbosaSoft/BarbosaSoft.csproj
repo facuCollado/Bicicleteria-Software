@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BicicleteriaDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BicicleteriaDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Compras-Form.cs">
       <SubType>Form</SubType>
     </Compile>
