@@ -42,8 +42,8 @@ namespace BarbosaSoft
         private void btn_compras_Click(object sender, EventArgs e)  //btn Compras
         {
             this.Hide();
-            Compras_Form compras = new Compras_Form();
-            compras.ShowDialog();
+            frmArticulos articulos = new frmArticulos();
+            articulos.ShowDialog();
             this.Close();
         }
 

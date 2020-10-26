@@ -84,7 +84,7 @@
             this.btn_compras.Name = "btn_compras";
             this.btn_compras.Size = new System.Drawing.Size(166, 54);
             this.btn_compras.TabIndex = 3;
-            this.btn_compras.Text = "Compras";
+            this.btn_compras.Text = "Articulos";
             this.btn_compras.UseVisualStyleBackColor = false;
             this.btn_compras.Click += new System.EventHandler(this.btn_compras_Click);
             // 
