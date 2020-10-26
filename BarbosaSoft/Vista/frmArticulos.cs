@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
 
 namespace BarbosaSoft
 {
@@ -15,7 +15,7 @@ namespace BarbosaSoft
     {
 
         //iniciamos la conexion
-        OleDbConnection con = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=BicicleteriaDB.accdb");
+        OleDbConnection con = new OleDbConnection("Provider = Microsoft.ACE.OLEDB.12.0; Data Source = D:\\VS Projects\\Bicicleteria-Software\\BarbosaSoft\\BicicleteriaDB.accdb");
         List<Articulos> articulos = new List<Articulos>();  //almacenará una lista de objetos articulos
 
         public frmArticulos()
@@ -46,7 +46,7 @@ namespace BarbosaSoft
             // Si logramos conectarnos entonces vamos a leer la DB
             if (estaConectado == true)
             {
-                // Leemos todos los datos de la tabla clientes
+                // Leemos todos los datos de la tabla articulos
                 OleDbCommand cmd = new OleDbCommand("select * from Articulos", con);
 
                 // Creamos un reader, que nos permitirá ejecutar la consulta
@@ -146,13 +146,6 @@ namespace BarbosaSoft
             actualizarTablaArticulos();
         }
 
-        private void tablaArticulos_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            txtCodigo.Text = tablaArticulos.CurrentRow.Cells[0].Value.ToString();
-            txtNombre.Text = tablaArticulos.CurrentRow.Cells[1].Value.ToString();
-            txtPrecio.Text = tablaArticulos.CurrentRow.Cells[2].Value.ToString();
-        }
-
         private void btnNuevo_Click_1(object sender, EventArgs e)
         {
             if (con.State == ConnectionState.Open)
@@ -161,11 +154,10 @@ namespace BarbosaSoft
                 float precio = Convert.ToSingle(txtPrecio.Text);
                 int codigo = Convert.ToInt32(txtCodigo.Text);
 
-
                 //Escribimos el comando de inserción
                 //El codigo es autonumérico por lo cual no necesitamos establecerlo
 
-                string strinsert = "INSERT into Articulos (Nombre, Precio) Values(@nom, @pre)";
+                string strinsert = "INSERT INTO Articulos (Nombre, Precio) Values(@nom, @pre)";
                 OleDbCommand cmd = new OleDbCommand(strinsert, con);
 
                 //Establecemos los parámetros que se utilizarán en el comando Insert
@@ -176,10 +168,8 @@ namespace BarbosaSoft
 
                 MessageBox.Show("Registro agregado!");
 
-                //Actualizamos la grilla
-                actualizarTablaArticulos();
-
-                //Limpiamos los campos
+                //Actualizamos la grilla y limpiamos los campos
+                actualizarTablaArticulos();                
                 btnLimpiar_Click(this, null);
             }
         }
@@ -206,9 +196,8 @@ namespace BarbosaSoft
 
                 MessageBox.Show("Registro eliminado!");
 
-                //Actualizamos la grilla
+                //Actualizamos la grilla y borramos los campos
                 actualizarTablaArticulos();
-
                 btnLimpiar_Click(this, null);
             }
         }
@@ -249,7 +238,9 @@ namespace BarbosaSoft
 
         private void tablaArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            txtCodigo.Text = tablaArticulos.CurrentRow.Cells[0].Value.ToString();
+            txtNombre.Text = tablaArticulos.CurrentRow.Cells[1].Value.ToString();
+            txtPrecio.Text = tablaArticulos.CurrentRow.Cells[2].Value.ToString();
         }
     }
 }
