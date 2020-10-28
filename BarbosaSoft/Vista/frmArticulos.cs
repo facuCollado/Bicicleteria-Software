@@ -150,27 +150,43 @@ namespace BarbosaSoft
         {
             if (con.State == ConnectionState.Open)
             {
-                string nombre = txtNombre.Text;
-                float precio = Convert.ToSingle(txtPrecio.Text);
-                int codigo = Convert.ToInt32(txtCodigo.Text);
 
-                //Escribimos el comando de inserción
-                //El codigo es autonumérico por lo cual no necesitamos establecerlo
+                if(String.IsNullOrEmpty(txtNombre.Text) || String.IsNullOrEmpty(txtPrecio.Text))
+                {
+                    MessageBox.Show("Ningun campo puede estar vacio");
+                }
+                else
+                {
+                    string nombre = txtNombre.Text;
+                    float precio = Convert.ToSingle(txtPrecio.Text);
+                    if (String.IsNullOrEmpty(txtCodigo.Text))
+                    {
+                        _ = 1;
+                    }
+                    else
+                    {
+                        int codigo = Convert.ToInt32(txtCodigo.Text);
+                    }                    
 
-                string strinsert = "INSERT INTO Articulos (Nombre, Precio) Values(@nom, @pre)";
-                OleDbCommand cmd = new OleDbCommand(strinsert, con);
+                    //Escribimos el comando de inserción
+                    //El codigo es autonumérico por lo cual no necesitamos establecerlo
 
-                //Establecemos los parámetros que se utilizarán en el comando Insert
-                cmd.Parameters.AddWithValue("nom", nombre);
-                cmd.Parameters.AddWithValue("pre", precio);
+                    string strinsert = "INSERT INTO Articulos (Nombre, Precio) Values(@nom, @pre)";
+                    OleDbCommand cmd = new OleDbCommand(strinsert, con);
 
-                cmd.ExecuteNonQuery(); //Ejecutamos el comando
+                    //Establecemos los parámetros que se utilizarán en el comando Insert
+                    cmd.Parameters.AddWithValue("nom", nombre);
+                    cmd.Parameters.AddWithValue("pre", precio);
 
-                MessageBox.Show("Registro agregado!");
+                    cmd.ExecuteNonQuery(); //Ejecutamos el comando
 
-                //Actualizamos la grilla y limpiamos los campos
-                actualizarTablaArticulos();                
-                btnLimpiar_Click(this, null);
+                    MessageBox.Show("Registro agregado!");
+
+                    //Actualizamos la grilla y limpiamos los campos
+                    actualizarTablaArticulos();
+                    btnLimpiar_Click(this, null);
+                }
+                
             }
         }
 
@@ -215,24 +231,32 @@ namespace BarbosaSoft
         {
             if (con.State == ConnectionState.Open)
             {
-                string nombre = txtNombre.Text;
-                float precio = Convert.ToSingle(txtPrecio.Text);
-                int codigo = Convert.ToInt32(txtCodigo.Text);
+                if (String.IsNullOrEmpty(txtCodigo.Text) || String.IsNullOrEmpty(txtNombre.Text) || String.IsNullOrEmpty(txtPrecio.Text))
+                {
+                    MessageBox.Show("Ningun campo puede estar vacio");
+                }
+                else
+                {
+                    string nombre = txtNombre.Text;
+                    float precio = Convert.ToSingle(txtPrecio.Text);
+                    int codigo = Convert.ToInt32(txtCodigo.Text);
 
-                //Escribimos el comando de actualización
-                string strupdate = "UPDATE Articulos Set Nombre = @nom, Precio = @pre WHERE Codigo = @codigo";
+                    //Escribimos el comando de actualización
+                    string strupdate = "UPDATE Articulos Set Nombre = @nom, Precio = @pre WHERE Codigo = @codigo";
 
-                OleDbCommand cmd = new OleDbCommand(strupdate, con);
-                //Establecemos los parámetros que se utilizarán en el comando Update
-                cmd.Parameters.AddWithValue("nom", nombre);
-                cmd.Parameters.AddWithValue("pre", precio);
-                cmd.Parameters.AddWithValue("codigo", codigo);
-                cmd.ExecuteNonQuery(); //Ejecutamos el comando
+                    OleDbCommand cmd = new OleDbCommand(strupdate, con);
+                    //Establecemos los parámetros que se utilizarán en el comando Update
+                    cmd.Parameters.AddWithValue("nom", nombre);
+                    cmd.Parameters.AddWithValue("pre", precio);
+                    cmd.Parameters.AddWithValue("codigo", codigo);
+                    cmd.ExecuteNonQuery(); //Ejecutamos el comando
 
-                MessageBox.Show("Registro modificado!");
+                    MessageBox.Show("Registro modificado!");
 
-                //Actualizamos la grilla
-                actualizarTablaArticulos();
+                    //Actualizamos la grilla
+                    actualizarTablaArticulos();
+                }
+                
             }
         }
 
@@ -242,5 +266,7 @@ namespace BarbosaSoft
             txtNombre.Text = tablaArticulos.CurrentRow.Cells[1].Value.ToString();
             txtPrecio.Text = tablaArticulos.CurrentRow.Cells[2].Value.ToString();
         }
+
+
     }
 }

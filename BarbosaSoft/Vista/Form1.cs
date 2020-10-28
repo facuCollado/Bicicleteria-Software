@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BarbosaSoft.Vista;
+using System;
 using System.Windows.Forms;
 
 namespace BarbosaSoft
@@ -52,6 +53,22 @@ namespace BarbosaSoft
             this.Hide();
             Ventas_Form ventas = new Ventas_Form();
             ventas.ShowDialog();
+            this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Desea Salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmClientes clientes = new frmClientes();
+            clientes.ShowDialog();
             this.Close();
         }
     }

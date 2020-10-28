@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BicicleteriaDBDataSet.cs">
+      <DependentUpon>BicicleteriaDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="BicicleteriaDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -71,6 +74,12 @@
     </Compile>
     <Compile Include="Vista\frmArticulos.Designer.cs">
       <DependentUpon>frmArticulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmClientes.Designer.cs">
+      <DependentUpon>frmClientes.cs</DependentUpon>
     </Compile>
     <Compile Include="Vista\ListaPedidos-Form.cs">
       <SubType>Form</SubType>
@@ -100,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\frmArticulos.resx">
       <DependentUpon>frmArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmClientes.resx">
+      <DependentUpon>frmClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\ListaPedidos-Form.resx">
       <DependentUpon>ListaPedidos-Form.cs</DependentUpon>

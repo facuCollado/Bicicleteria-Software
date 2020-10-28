@@ -11,109 +11,17 @@ namespace BarbosaSoft.Clases
         private int id;
         private string nombre;
         private string apellido;
-        private string direccion;
-        private string provincia;
-        private string ciudad;
         private long dni;
+        private string direccion;
+        private string localidad;        
         private long telefono;
 
-
-        public string Nombre
-        {
-            get
-            {
-                return nombre;
-            }
-            set
-            {
-                nombre = value;
-            }
-
-        }
-
-        public string Apellido
-        {
-            get
-            {
-                return apellido;
-            }
-            set
-            {
-                apellido = value;
-            }
-        }
-
-        public string Direccion
-        {
-            get
-            {
-                return direccion;
-            }
-            set
-            {
-                direccion = value;
-            }
-        }
-
-        public string Provincia
-        {
-            get
-            {
-                return provincia;
-            }
-            set
-            {
-                provincia = value;
-            }
-        }
-
-        public string Ciudad
-        {
-            get
-            {
-                return ciudad;
-            }
-            set
-            {
-                ciudad = value;
-            }
-        }
-
-        public long Dni
-        {
-            get
-            {
-                return dni;
-            }
-            set
-            {
-                dni = value;
-            }
-        }
-
-        public long Telefono
-        {
-            get
-            {
-                return telefono;
-            }
-            set
-            {
-                telefono = value;
-            }
-        }
-
-        public int Id
-        {
-            get
-            {
-                return id;
-            }
-
-            set
-            {
-                id = value;
-            }
-        }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public long Dni { get; set; }
+        public string Direccion { get; set; }
+        public string Localidad { get; set; }        
+        public long Telefono { get; set; }
     }
 }
