@@ -31,7 +31,6 @@
             this.btnModificar = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
-            this.btnActualizar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.txtDni = new System.Windows.Forms.TextBox();
@@ -79,16 +78,6 @@
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(65, 20);
             this.txtId.TabIndex = 53;
-            // 
-            // btnActualizar
-            // 
-            this.btnActualizar.Location = new System.Drawing.Point(681, 219);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(105, 21);
-            this.btnActualizar.TabIndex = 52;
-            this.btnActualizar.Text = "Actualizar";
-            this.btnActualizar.UseVisualStyleBackColor = true;
-            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // btnVolver
             // 
@@ -175,7 +164,7 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(681, 246);
+            this.btnLimpiar.Location = new System.Drawing.Point(681, 223);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(105, 24);
             this.btnLimpiar.TabIndex = 44;
@@ -206,7 +195,7 @@
             this.tablaclientes.Name = "tablaclientes";
             this.tablaclientes.Size = new System.Drawing.Size(774, 169);
             this.tablaclientes.TabIndex = 41;
-            this.tablaclientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaclientes_CellContentClick);
+            this.tablaclientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaclientes_CellClick);
             // 
             // btnBorrar
             // 
@@ -253,7 +242,6 @@
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtId);
-            this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtDni);
@@ -285,7 +273,6 @@
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtDni;

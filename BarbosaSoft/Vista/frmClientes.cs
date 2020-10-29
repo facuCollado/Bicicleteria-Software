@@ -14,8 +14,7 @@ namespace BarbosaSoft.Vista
 {
     public partial class frmClientes : Form
     {
-
-        //iniciamos la conexion
+       //iniciamos la conexion
         OleDbConnection con = new OleDbConnection("Provider = Microsoft.ACE.OLEDB.12.0; Data Source = D:\\VS Projects\\Bicicleteria-Software\\BarbosaSoft\\BicicleteriaDB.accdb");
         List<Clientes> clientes = new List<Clientes>(); //almacenará una lista de objetos clientes
 
@@ -59,7 +58,7 @@ namespace BarbosaSoft.Vista
                         c.Id = r.GetInt32(0); // valor de la celda correspondiente a la fila actual y primera columna
                         c.Nombre = r.GetString(1); // valor de la segunda columna
                         c.Apellido = r.GetString(2);
-                        c.Telefono = r.GetInt32(3);
+                        c.Telefono = r.GetString(3);
                         c.Direccion = r.GetString(4);
                         c.Dni = r.GetInt32(5);
                         c.Localidad = r.GetString(6);                        
@@ -118,6 +117,7 @@ namespace BarbosaSoft.Vista
            
         }
 
+        //Actualizar grilla
         private void actualizarTablaClientes()
         {
             //Limpiamos la grilla
@@ -138,7 +138,7 @@ namespace BarbosaSoft.Vista
                     c.Id = r.GetInt32(0); // valor de la celda correspondiente a la fila actual y primera columna
                     c.Nombre = r.GetString(1); // valor de la segunda columna
                     c.Apellido = r.GetString(2);
-                    c.Telefono = r.GetInt32(3);
+                    c.Telefono = r.GetString(3);
                     c.Direccion = r.GetString(4);
                     c.Dni = r.GetInt32(5);
                     c.Localidad = r.GetString(6);
@@ -154,15 +154,12 @@ namespace BarbosaSoft.Vista
                 }
                 clientes.Clear();
             }
+            else
+                inicializarTablaClientes();
             r.Close();
         }
 
-        private void tablaclientes_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-           
-        }
-
-        // NUEVO CLIENTE
+        // Nuevo registro
         private void btnNuevoCliente_Click_1(object sender, EventArgs e)
         {
             if (con.State == ConnectionState.Open)
@@ -179,7 +176,7 @@ namespace BarbosaSoft.Vista
                     long dni = Convert.ToInt64(txtDni.Text);
                     string dir = txtDireccion.Text;
                     string loc = txtLocalidad.Text;
-                    long tel = Convert.ToInt64(txtTelefono.Text);
+                    string tel = txtTelefono.Text;
 
                     //Escribimos el comando de inserción
                     //El ID del cliente es autonumérico por lo cual no necesitamos establecerlo
@@ -194,11 +191,19 @@ namespace BarbosaSoft.Vista
                     cmd.Parameters.AddWithValue("dir", dir);
                     cmd.Parameters.AddWithValue("loc", loc);
                     cmd.Parameters.AddWithValue("tel", tel);
-                    cmd.ExecuteNonQuery(); //Ejecutamos el comando
 
+                    try
+                    {
+                        cmd.ExecuteNonQuery(); //Ejecutamos el comando
+                    }
+                    catch (OleDbException ex)
+                    {
+                        MessageBox.Show("Error al insertar los datos: " + ex);                        
+                    }
+                                        
                     //Actualizamos la grilla
                     actualizarTablaClientes();
-
+                    
                     //Limpiamos los campos
                     btnLimpiar_Click_1(this, null);
                 }            
@@ -206,7 +211,7 @@ namespace BarbosaSoft.Vista
             }
         }
 
-        // MODIFICAR CLIENTE
+        // Actualizar registro
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
             if (con.State == ConnectionState.Open)
@@ -224,7 +229,7 @@ namespace BarbosaSoft.Vista
                     long dni = Convert.ToInt64(txtDni.Text);
                     string dir = txtDireccion.Text;
                     string loc = txtLocalidad.Text;
-                    long tel = Convert.ToInt64(txtTelefono.Text);
+                    string tel = txtTelefono.Text;
 
 
                     //Escribimos el comando de actualización
@@ -239,7 +244,15 @@ namespace BarbosaSoft.Vista
                     cmd.Parameters.AddWithValue("loc", loc);
                     cmd.Parameters.AddWithValue("tel", tel);
                     cmd.Parameters.AddWithValue("id", id);
-                    cmd.ExecuteNonQuery(); //Ejecutamos el comando
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery(); //Ejecutamos el comando
+                    }
+                    catch (OleDbException ex)
+                    {
+                        MessageBox.Show("Error al insertar los datos: " + ex);
+                    }
 
                     //Actualizamos la grilla
                     actualizarTablaClientes();
@@ -248,29 +261,33 @@ namespace BarbosaSoft.Vista
             }
         }
 
-        // ELIMINAR REGISTRO
+        // Eliminar registro
         private void btnBorrar_Click_1(object sender, EventArgs e)
         {
-            if (con.State == ConnectionState.Open)
+            if (MessageBox.Show("¿Desea eliminar el registro?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
-                int id = Convert.ToInt32(txtId.Text);
-                //Escribimos el comando de eliminacion
-                string strdelete = "DELETE FROM Clientes WHERE id = @id;";
+                if (con.State == ConnectionState.Open)
+                {
+                    int id = Convert.ToInt32(txtId.Text);
+                    //Escribimos el comando de eliminacion
+                    string strdelete = "DELETE FROM Clientes WHERE id = @id;";
 
-                OleDbCommand cmd = new OleDbCommand(strdelete, con);
-                //Establecemos los parámetros que se utilizarán en el comando delete
-                cmd.Parameters.AddWithValue("id", id);
+                    OleDbCommand cmd = new OleDbCommand(strdelete, con);
+                    //Establecemos los parámetros que se utilizarán en el comando delete
+                    cmd.Parameters.AddWithValue("id", id);
 
-                cmd.ExecuteNonQuery(); //Ejecutamos el comando
+                    cmd.ExecuteNonQuery(); //Ejecutamos el comando
 
-                //Actualizamos la grilla
-                actualizarTablaClientes();
+                    //Actualizamos la grilla
+                    actualizarTablaClientes();
 
-                //Limpiamos los campos
-                btnLimpiar_Click_1(this, null);
-            }
+                    //Limpiamos los campos
+                    btnLimpiar_Click_1(this, null);
+                }
+            }                
         }
 
+        //Limpiar campos
         private void btnLimpiar_Click_1(object sender, EventArgs e)
         {
             txtId.Text = "";
@@ -282,6 +299,7 @@ namespace BarbosaSoft.Vista
             txtLocalidad.Text = "";            
         }
 
+        //volver al menu principal
         private void btnVolver_Click_1(object sender, EventArgs e)
         {
             this.Hide();
@@ -290,12 +308,8 @@ namespace BarbosaSoft.Vista
             this.Close();
         }
 
-        private void btnActualizar_Click(object sender, EventArgs e)
-        {
-            actualizarTablaClientes();
-        }
-
-        private void tablaclientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //Rellenar campos con los datos en la grilla
+        private void tablaclientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //Al seleccionar cualquier fila, se cargan los datos en los textbox
             //Nota: por cuestiones de simplificar el ejemplo sólo cargamos los datos en pantalla
@@ -305,10 +319,11 @@ namespace BarbosaSoft.Vista
             txtId.Text = tablaclientes.CurrentRow.Cells[0].Value.ToString();
             txtNombre.Text = tablaclientes.CurrentRow.Cells[1].Value.ToString();
             txtApellido.Text = tablaclientes.CurrentRow.Cells[2].Value.ToString();
-            txtTelefono.Text = tablaclientes.CurrentRow.Cells[3].Value.ToString();
-            txtDireccion.Text = tablaclientes.CurrentRow.Cells[4].Value.ToString();            
+            txtDni.Text = tablaclientes.CurrentRow.Cells[3].Value.ToString();
+            txtDireccion.Text = tablaclientes.CurrentRow.Cells[4].Value.ToString();
             txtLocalidad.Text = tablaclientes.CurrentRow.Cells[5].Value.ToString();
-            txtDni.Text = tablaclientes.CurrentRow.Cells[6].Value.ToString();
+            txtTelefono.Text = tablaclientes.CurrentRow.Cells[6].Value.ToString();
+            
         }
     }
 }

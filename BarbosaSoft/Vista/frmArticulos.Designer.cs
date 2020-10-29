@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
-            this.btnActualizar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.txtPrecio = new System.Windows.Forms.TextBox();
@@ -48,7 +47,7 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(526, 246);
+            this.btnLimpiar.Location = new System.Drawing.Point(526, 218);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(81, 22);
             this.btnLimpiar.TabIndex = 61;
@@ -58,23 +57,13 @@
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(534, 352);
+            this.btnVolver.Location = new System.Drawing.Point(545, 367);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(73, 36);
+            this.btnVolver.Size = new System.Drawing.Size(62, 23);
             this.btnVolver.TabIndex = 53;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click_1);
-            // 
-            // btnActualizar
-            // 
-            this.btnActualizar.Location = new System.Drawing.Point(526, 218);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(81, 22);
-            this.btnActualizar.TabIndex = 60;
-            this.btnActualizar.Text = "Actualizar";
-            this.btnActualizar.UseVisualStyleBackColor = true;
-            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click_1);
             // 
             // label8
             // 
@@ -127,18 +116,18 @@
             // 
             // tablaArticulos
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.tablaArticulos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.tablaArticulos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.tablaArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaArticulos.Location = new System.Drawing.Point(12, 43);
             this.tablaArticulos.Name = "tablaArticulos";
             this.tablaArticulos.Size = new System.Drawing.Size(595, 169);
             this.tablaArticulos.TabIndex = 55;
-            this.tablaArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaArticulos_CellContentClick);
+            this.tablaArticulos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaArticulos_CellClick);
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Location = new System.Drawing.Point(216, 352);
+            this.btnBorrar.Location = new System.Drawing.Point(339, 352);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(106, 36);
             this.btnBorrar.TabIndex = 52;
@@ -154,11 +143,10 @@
             this.label1.Size = new System.Drawing.Size(117, 31);
             this.label1.TabIndex = 54;
             this.label1.Text = "Articulos";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(104, 352);
+            this.btnModificar.Location = new System.Drawing.Point(227, 352);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(106, 36);
             this.btnModificar.TabIndex = 51;
@@ -168,7 +156,7 @@
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Location = new System.Drawing.Point(4, 352);
+            this.btnNuevo.Location = new System.Drawing.Point(127, 352);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(94, 36);
             this.btnNuevo.TabIndex = 50;
@@ -183,7 +171,6 @@
             this.ClientSize = new System.Drawing.Size(619, 402);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnVolver);
-            this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.txtPrecio);
@@ -208,7 +195,6 @@
 
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnVolver;
-        private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.TextBox txtPrecio;

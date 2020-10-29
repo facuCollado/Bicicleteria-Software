@@ -23,10 +23,6 @@ namespace BarbosaSoft
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void frmArticulos_Load(object sender, EventArgs e)
         {
@@ -106,6 +102,7 @@ namespace BarbosaSoft
 
         }
 
+        //Actualizar dataGrid
         private void actualizarTablaArticulos()
         {
             //Limpiamos la grilla
@@ -129,23 +126,21 @@ namespace BarbosaSoft
 
                     articulos.Add(ar);
                 }
-
+                
                 //Mostramos los datos en la grilla
                 for (int i = 0; i < articulos.Count(); i++)
                 {
+                    tablaArticulos.AllowUserToAddRows = false;
                     tablaArticulos.Rows.Add(articulos[i].Codigo, articulos[i].Nombre, articulos[i].Precio);
                 }
-
                 articulos.Clear(); //limpio la lista de articulos para utilizarla en otros lugares
             }
+            else
+                inicializarTablaArticulos();
             r.Close();
         }
-
-        private void btnActualizar_Click_1(object sender, EventArgs e)
-        {
-            actualizarTablaArticulos();
-        }
-
+       
+        //Nuevo registro
         private void btnNuevo_Click_1(object sender, EventArgs e)
         {
             if (con.State == ConnectionState.Open)
@@ -158,15 +153,7 @@ namespace BarbosaSoft
                 else
                 {
                     string nombre = txtNombre.Text;
-                    float precio = Convert.ToSingle(txtPrecio.Text);
-                    if (String.IsNullOrEmpty(txtCodigo.Text))
-                    {
-                        _ = 1;
-                    }
-                    else
-                    {
-                        int codigo = Convert.ToInt32(txtCodigo.Text);
-                    }                    
+                    float precio = Convert.ToSingle(txtPrecio.Text);                                    
 
                     //Escribimos el comando de inserción
                     //El codigo es autonumérico por lo cual no necesitamos establecerlo
@@ -183,55 +170,27 @@ namespace BarbosaSoft
                     MessageBox.Show("Registro agregado!");
 
                     //Actualizamos la grilla y limpiamos los campos
-                    actualizarTablaArticulos();
+                    try
+                    {
+                        actualizarTablaArticulos();
+                    }
+                    catch (NullReferenceException ex)
+                    {
+                        MessageBox.Show("No se pudo actualizar la tabla: \n" + ex);
+                        throw;
+                    }
                     btnLimpiar_Click(this, null);
                 }
                 
             }
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
-            txtNombre.Text = "";
-            txtPrecio.Text = "";
-        }
-
-        private void btnBorrar_Click_1(object sender, EventArgs e)
-        {
-            if (con.State == ConnectionState.Open)
-            {
-                int cod = Convert.ToInt32(txtCodigo.Text);
-                //Escribimos el comando de eliminacion
-                string strdelete = "DELETE FROM Articulos WHERE codigo = @codigo;";
-
-                OleDbCommand cmd = new OleDbCommand(strdelete, con);
-                //Establecemos los parámetros que se utilizarán en el comando delete
-                cmd.Parameters.AddWithValue("codigo", cod);
-
-                cmd.ExecuteNonQuery(); //Ejecutamos el comando
-
-                MessageBox.Show("Registro eliminado!");
-
-                //Actualizamos la grilla y borramos los campos
-                actualizarTablaArticulos();
-                btnLimpiar_Click(this, null);
-            }
-        }
-
-
-        private void btnVolver_Click_1(object sender, EventArgs e)
-        {
-            this.Hide();
-            Form1 f1 = new Form1();
-            f1.ShowDialog();
-            this.Close();
-        }
-
+        //Actualizar datos
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
             if (con.State == ConnectionState.Open)
             {
-                if (String.IsNullOrEmpty(txtCodigo.Text) || String.IsNullOrEmpty(txtNombre.Text) || String.IsNullOrEmpty(txtPrecio.Text))
+                if (String.IsNullOrEmpty(txtNombre.Text) || String.IsNullOrEmpty(txtPrecio.Text))
                 {
                     MessageBox.Show("Ningun campo puede estar vacio");
                 }
@@ -256,17 +215,60 @@ namespace BarbosaSoft
                     //Actualizamos la grilla
                     actualizarTablaArticulos();
                 }
-                
+
             }
         }
 
-        private void tablaArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //Borrar registro
+        private void btnBorrar_Click_1(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Desea eliminar el registro?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    int cod = Convert.ToInt32(txtCodigo.Text);
+                    //Escribimos el comando de eliminacion
+                    string strdelete = "DELETE FROM Articulos WHERE codigo = @codigo;";
+
+                    OleDbCommand cmd = new OleDbCommand(strdelete, con);
+                    //Establecemos los parámetros que se utilizarán en el comando delete
+                    cmd.Parameters.AddWithValue("codigo", cod);
+
+                    cmd.ExecuteNonQuery(); //Ejecutamos el comando
+
+                    MessageBox.Show("Registro eliminado");
+
+                    //Actualizamos la grilla y borramos los campos
+                    actualizarTablaArticulos();
+                    btnLimpiar_Click(this, null);
+                }
+            }
+            
+        }
+
+        //Limpiar campos
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtNombre.Text = "";
+            txtPrecio.Text = "";
+        }
+
+        //Volver al menu principal
+        private void btnVolver_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form1 f1 = new Form1();
+            f1.ShowDialog();
+            this.Close();
+        }
+
+        //Click en el dataGrid
+        private void tablaArticulos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txtCodigo.Text = tablaArticulos.CurrentRow.Cells[0].Value.ToString();
             txtNombre.Text = tablaArticulos.CurrentRow.Cells[1].Value.ToString();
             txtPrecio.Text = tablaArticulos.CurrentRow.Cells[2].Value.ToString();
         }
-
 
     }
 }

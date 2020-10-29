@@ -42,6 +42,7 @@ namespace BarbosaSoft
             {
                 coleccion.Add(Convert.ToString(row["Nombre"]));     // busca por nombre
                 coleccion.Add(Convert.ToString(row["Apellido"]));     // busca por apellido
+                coleccion.Add(Convert.ToString(row["Dni"]));     // busca por apellido
             }
 
             return coleccion;

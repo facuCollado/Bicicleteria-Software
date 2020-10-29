@@ -14,7 +14,7 @@ namespace BarbosaSoft.Clases
         private long dni;
         private string direccion;
         private string localidad;        
-        private long telefono;
+        private string telefono;
 
         public int Id { get; set; }
         public string Nombre { get; set; }
@@ -22,6 +22,6 @@ namespace BarbosaSoft.Clases
         public long Dni { get; set; }
         public string Direccion { get; set; }
         public string Localidad { get; set; }        
-        public long Telefono { get; set; }
+        public string Telefono { get; set; }
     }
 }

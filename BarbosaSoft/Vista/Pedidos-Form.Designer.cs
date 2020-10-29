@@ -35,21 +35,22 @@
             this.lbl_tel = new System.Windows.Forms.Label();
             this.lbl_email = new System.Windows.Forms.Label();
             this.lbl_descrip = new System.Windows.Forms.Label();
-            this.txt_name = new System.Windows.Forms.TextBox();
-            this.txt_email = new System.Windows.Forms.TextBox();
-            this.txt_lastname = new System.Windows.Forms.TextBox();
-            this.txt_tel = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtDni = new System.Windows.Forms.TextBox();
+            this.txtApellido = new System.Windows.Forms.TextBox();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
             this.lbl_date = new System.Windows.Forms.Label();
             this.lbl_time = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.txt_description = new System.Windows.Forms.RichTextBox();
+            this.txtDescripcion = new System.Windows.Forms.RichTextBox();
             this.btn_back = new System.Windows.Forms.Button();
             this.lbl_itemList = new System.Windows.Forms.Label();
-            this.btn_accept = new System.Windows.Forms.Button();
-            this.btn_cancelar = new System.Windows.Forms.Button();
+            this.btnNuevo = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.lbl_total = new System.Windows.Forms.Label();
-            this.txt_total = new System.Windows.Forms.TextBox();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // title
@@ -64,22 +65,19 @@
             // 
             // lbl_name
             // 
-            this.lbl_name.AutoSize = true;
-            this.lbl_name.Location = new System.Drawing.Point(43, 60);
+            this.lbl_name.Location = new System.Drawing.Point(0, 0);
             this.lbl_name.Name = "lbl_name";
-            this.lbl_name.Size = new System.Drawing.Size(54, 13);
-            this.lbl_name.TabIndex = 1;
-            this.lbl_name.Text = "Nombre/s";
+            this.lbl_name.Size = new System.Drawing.Size(100, 23);
+            this.lbl_name.TabIndex = 18;
             // 
             // lbl_lastname
             // 
             this.lbl_lastname.AutoSize = true;
             this.lbl_lastname.Location = new System.Drawing.Point(343, 60);
             this.lbl_lastname.Name = "lbl_lastname";
-            this.lbl_lastname.Size = new System.Drawing.Size(54, 13);
+            this.lbl_lastname.Size = new System.Drawing.Size(44, 13);
             this.lbl_lastname.TabIndex = 2;
-            this.lbl_lastname.Text = "Apellido/s";
-            this.lbl_lastname.Click += new System.EventHandler(this.lbl_lastname_Click);
+            this.lbl_lastname.Text = "Apellido";
             // 
             // lbl_tel
             // 
@@ -95,9 +93,9 @@
             this.lbl_email.AutoSize = true;
             this.lbl_email.Location = new System.Drawing.Point(343, 117);
             this.lbl_email.Name = "lbl_email";
-            this.lbl_email.Size = new System.Drawing.Size(32, 13);
+            this.lbl_email.Size = new System.Drawing.Size(23, 13);
             this.lbl_email.TabIndex = 4;
-            this.lbl_email.Text = "Email";
+            this.lbl_email.Text = "Dni";
             // 
             // lbl_descrip
             // 
@@ -108,38 +106,39 @@
             this.lbl_descrip.TabIndex = 5;
             this.lbl_descrip.Text = "Descripción";
             // 
-            // txt_name
+            // txtNombre
             // 
-            this.txt_name.Location = new System.Drawing.Point(107, 57);
-            this.txt_name.Name = "txt_name";
-            this.txt_name.Size = new System.Drawing.Size(145, 20);
-            this.txt_name.TabIndex = 2;
+            this.txtNombre.Location = new System.Drawing.Point(107, 57);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(145, 20);
+            this.txtNombre.TabIndex = 2;
             // 
-            // txt_email
+            // txtDni
             // 
-            this.txt_email.Location = new System.Drawing.Point(403, 114);
-            this.txt_email.Name = "txt_email";
-            this.txt_email.Size = new System.Drawing.Size(145, 20);
-            this.txt_email.TabIndex = 5;
+            this.txtDni.Location = new System.Drawing.Point(403, 114);
+            this.txtDni.Name = "txtDni";
+            this.txtDni.Size = new System.Drawing.Size(145, 20);
+            this.txtDni.TabIndex = 5;
+            this.txtDni.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDni_KeyDown);
             // 
-            // txt_lastname
+            // txtApellido
             // 
-            this.txt_lastname.Location = new System.Drawing.Point(403, 57);
-            this.txt_lastname.Name = "txt_lastname";
-            this.txt_lastname.Size = new System.Drawing.Size(145, 20);
-            this.txt_lastname.TabIndex = 3;
+            this.txtApellido.Location = new System.Drawing.Point(403, 57);
+            this.txtApellido.Name = "txtApellido";
+            this.txtApellido.Size = new System.Drawing.Size(145, 20);
+            this.txtApellido.TabIndex = 3;
             // 
-            // txt_tel
+            // txtTelefono
             // 
-            this.txt_tel.Location = new System.Drawing.Point(107, 114);
-            this.txt_tel.Name = "txt_tel";
-            this.txt_tel.Size = new System.Drawing.Size(145, 20);
-            this.txt_tel.TabIndex = 4;
+            this.txtTelefono.Location = new System.Drawing.Point(107, 114);
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(145, 20);
+            this.txtTelefono.TabIndex = 4;
             // 
             // lbl_date
             // 
             this.lbl_date.AutoSize = true;
-            this.lbl_date.Location = new System.Drawing.Point(43, 9);
+            this.lbl_date.Location = new System.Drawing.Point(12, 9);
             this.lbl_date.Name = "lbl_date";
             this.lbl_date.Size = new System.Drawing.Size(34, 13);
             this.lbl_date.TabIndex = 10;
@@ -159,13 +158,13 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // txt_description
+            // txtDescripcion
             // 
-            this.txt_description.Location = new System.Drawing.Point(112, 180);
-            this.txt_description.Name = "txt_description";
-            this.txt_description.Size = new System.Drawing.Size(426, 101);
-            this.txt_description.TabIndex = 6;
-            this.txt_description.Text = "";
+            this.txtDescripcion.Location = new System.Drawing.Point(112, 180);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(426, 101);
+            this.txtDescripcion.TabIndex = 6;
+            this.txtDescripcion.Text = "";
             // 
             // btn_back
             // 
@@ -189,29 +188,31 @@
             this.lbl_itemList.TabIndex = 12;
             this.lbl_itemList.Text = "Lista items";
             // 
-            // btn_accept
+            // btnNuevo
             // 
-            this.btn_accept.BackColor = System.Drawing.Color.LightSlateGray;
-            this.btn_accept.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btn_accept.ForeColor = System.Drawing.Color.White;
-            this.btn_accept.Location = new System.Drawing.Point(244, 407);
-            this.btn_accept.Name = "btn_accept";
-            this.btn_accept.Size = new System.Drawing.Size(103, 33);
-            this.btn_accept.TabIndex = 13;
-            this.btn_accept.Text = "Aceptar";
-            this.btn_accept.UseVisualStyleBackColor = false;
+            this.btnNuevo.BackColor = System.Drawing.Color.LightSlateGray;
+            this.btnNuevo.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btnNuevo.ForeColor = System.Drawing.Color.White;
+            this.btnNuevo.Location = new System.Drawing.Point(244, 422);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(122, 49);
+            this.btnNuevo.TabIndex = 13;
+            this.btnNuevo.Text = "Nuevo ";
+            this.btnNuevo.UseVisualStyleBackColor = false;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
-            // btn_cancelar
+            // btnLimpiar
             // 
-            this.btn_cancelar.BackColor = System.Drawing.Color.LightSlateGray;
-            this.btn_cancelar.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btn_cancelar.ForeColor = System.Drawing.Color.White;
-            this.btn_cancelar.Location = new System.Drawing.Point(482, 438);
-            this.btn_cancelar.Name = "btn_cancelar";
-            this.btn_cancelar.Size = new System.Drawing.Size(73, 33);
-            this.btn_cancelar.TabIndex = 14;
-            this.btn_cancelar.Text = "Cancelar";
-            this.btn_cancelar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.BackColor = System.Drawing.Color.LightSlateGray;
+            this.btnLimpiar.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btnLimpiar.ForeColor = System.Drawing.Color.White;
+            this.btnLimpiar.Location = new System.Drawing.Point(482, 438);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(73, 33);
+            this.btnLimpiar.TabIndex = 14;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // richTextBox2
             // 
@@ -230,12 +231,21 @@
             this.lbl_total.TabIndex = 16;
             this.lbl_total.Text = "Total";
             // 
-            // txt_total
+            // txtTotal
             // 
-            this.txt_total.Location = new System.Drawing.Point(393, 314);
-            this.txt_total.Name = "txt_total";
-            this.txt_total.Size = new System.Drawing.Size(145, 20);
-            this.txt_total.TabIndex = 17;
+            this.txtTotal.Location = new System.Drawing.Point(393, 314);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(145, 20);
+            this.txtTotal.TabIndex = 17;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(43, 60);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Nombre";
             // 
             // Pedidos_Form
             // 
@@ -243,20 +253,21 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(642, 483);
-            this.Controls.Add(this.txt_total);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.lbl_total);
             this.Controls.Add(this.richTextBox2);
-            this.Controls.Add(this.btn_cancelar);
-            this.Controls.Add(this.btn_accept);
+            this.Controls.Add(this.btnLimpiar);
+            this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.lbl_itemList);
             this.Controls.Add(this.btn_back);
-            this.Controls.Add(this.txt_description);
+            this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.lbl_time);
             this.Controls.Add(this.lbl_date);
-            this.Controls.Add(this.txt_tel);
-            this.Controls.Add(this.txt_lastname);
-            this.Controls.Add(this.txt_email);
-            this.Controls.Add(this.txt_name);
+            this.Controls.Add(this.txtTelefono);
+            this.Controls.Add(this.txtApellido);
+            this.Controls.Add(this.txtDni);
+            this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.lbl_descrip);
             this.Controls.Add(this.lbl_email);
             this.Controls.Add(this.lbl_tel);
@@ -279,20 +290,21 @@
         private System.Windows.Forms.Label lbl_tel;
         private System.Windows.Forms.Label lbl_email;
         private System.Windows.Forms.Label lbl_descrip;
-        private System.Windows.Forms.TextBox txt_name;
-        private System.Windows.Forms.TextBox txt_email;
-        private System.Windows.Forms.TextBox txt_lastname;
-        private System.Windows.Forms.TextBox txt_tel;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.TextBox txtDni;
+        private System.Windows.Forms.TextBox txtApellido;
+        private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.Label lbl_date;
         private System.Windows.Forms.Label lbl_time;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.RichTextBox txt_description;
+        private System.Windows.Forms.RichTextBox txtDescripcion;
         private System.Windows.Forms.Button btn_back;
         private System.Windows.Forms.Label lbl_itemList;
-        private System.Windows.Forms.Button btn_accept;
-        private System.Windows.Forms.Button btn_cancelar;
+        private System.Windows.Forms.Button btnNuevo;
+        private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Label lbl_total;
-        private System.Windows.Forms.TextBox txt_total;
+        private System.Windows.Forms.TextBox txtTotal;
+        private System.Windows.Forms.Label label1;
     }
 }
