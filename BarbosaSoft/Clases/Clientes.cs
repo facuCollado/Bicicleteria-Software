@@ -16,12 +16,12 @@ namespace BarbosaSoft.Clases
         private string localidad;        
         private string telefono;
 
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public long Dni { get; set; }
-        public string Direccion { get; set; }
-        public string Localidad { get; set; }        
-        public string Telefono { get; set; }
+        public int Id { get => id; set => id = value; }
+        public string Nombre { get => nombre; set => nombre = value; }
+        public string Apellido { get => apellido; set => apellido = value; }
+        public long Dni { get => dni; set => dni = value; }
+        public string Direccion { get => direccion; set => direccion = value; }
+        public string Localidad { get => localidad; set => localidad = value; }
+        public string Telefono { get => telefono; set => telefono = value; }
     }
 }

@@ -70,8 +70,14 @@ namespace BarbosaSoft.Vista
                     //Mostramos los datos en la grilla
                     for (int i = 0; i < clientes.Count(); i++)
                     {
-                        tablaclientes.Rows.Add(clientes[i].Id, clientes[i].Nombre, clientes[i].Apellido, 
-                            clientes[i].Dni, clientes[i].Direccion, clientes[i].Localidad, clientes[i].Telefono);
+                       tablaclientes.Rows.Add
+                       (clientes[i].Id,
+                        clientes[i].Nombre,
+                        clientes[i].Apellido,
+                        clientes[i].Dni,
+                        clientes[i].Direccion,
+                        clientes[i].Localidad,
+                        clientes[i].Telefono);
                     }
 
                     clientes.Clear(); //limpio la lista de clientes para utilizarla en otros lugares
@@ -149,8 +155,14 @@ namespace BarbosaSoft.Vista
                 //Mostramos los datos en la grilla
                 for (int i = 0; i < clientes.Count(); i++)
                 {
-                    tablaclientes.Rows.Add(clientes[i].Id, clientes[i].Nombre, clientes[i].Apellido, clientes[i].Dni, 
-                                           clientes[i].Direccion, clientes[i].Localidad, clientes[i].Telefono);
+                    tablaclientes.Rows.Add
+                       (clientes[i].Id,
+                        clientes[i].Nombre, 
+                        clientes[i].Apellido, 
+                        clientes[i].Dni, 
+                        clientes[i].Direccion, 
+                        clientes[i].Localidad, 
+                        clientes[i].Telefono);
                 }
                 clientes.Clear();
             }

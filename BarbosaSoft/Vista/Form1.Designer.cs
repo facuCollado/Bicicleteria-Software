@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.title = new System.Windows.Forms.Label();
             this.btn_orderNew = new System.Windows.Forms.Button();
-            this.btn_orderList = new System.Windows.Forms.Button();
             this.btnArticulos = new System.Windows.Forms.Button();
             this.btnVentas = new System.Windows.Forms.Button();
             this.lbl_date = new System.Windows.Forms.Label();
@@ -60,29 +59,16 @@
             this.btn_orderNew.Name = "btn_orderNew";
             this.btn_orderNew.Size = new System.Drawing.Size(166, 54);
             this.btn_orderNew.TabIndex = 1;
-            this.btn_orderNew.Text = "Nuevo Pedido";
+            this.btn_orderNew.Text = "Pedidos";
             this.btn_orderNew.UseVisualStyleBackColor = false;
             this.btn_orderNew.Click += new System.EventHandler(this.btn_orderNew_Click);
-            // 
-            // btn_orderList
-            // 
-            this.btn_orderList.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_orderList.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btn_orderList.ForeColor = System.Drawing.Color.White;
-            this.btn_orderList.Location = new System.Drawing.Point(217, 138);
-            this.btn_orderList.Name = "btn_orderList";
-            this.btn_orderList.Size = new System.Drawing.Size(166, 54);
-            this.btn_orderList.TabIndex = 2;
-            this.btn_orderList.Text = "Pedidos";
-            this.btn_orderList.UseVisualStyleBackColor = false;
-            this.btn_orderList.Click += new System.EventHandler(this.btn_orderList_Click);
             // 
             // btnArticulos
             // 
             this.btnArticulos.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnArticulos.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnArticulos.ForeColor = System.Drawing.Color.White;
-            this.btnArticulos.Location = new System.Drawing.Point(217, 198);
+            this.btnArticulos.Location = new System.Drawing.Point(217, 161);
             this.btnArticulos.Name = "btnArticulos";
             this.btnArticulos.Size = new System.Drawing.Size(166, 54);
             this.btnArticulos.TabIndex = 3;
@@ -131,7 +117,7 @@
             this.btnClientes.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnClientes.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnClientes.ForeColor = System.Drawing.Color.White;
-            this.btnClientes.Location = new System.Drawing.Point(217, 258);
+            this.btnClientes.Location = new System.Drawing.Point(217, 238);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Size = new System.Drawing.Size(166, 54);
             this.btnClientes.TabIndex = 7;
@@ -164,7 +150,6 @@
             this.Controls.Add(this.lbl_date);
             this.Controls.Add(this.btnVentas);
             this.Controls.Add(this.btnArticulos);
-            this.Controls.Add(this.btn_orderList);
             this.Controls.Add(this.btn_orderNew);
             this.Controls.Add(this.title);
             this.Name = "Form1";
@@ -179,7 +164,6 @@
 
         private System.Windows.Forms.Label title;
         private System.Windows.Forms.Button btn_orderNew;
-        private System.Windows.Forms.Button btn_orderList;
         private System.Windows.Forms.Button btnArticulos;
         private System.Windows.Forms.Button btnVentas;
         private System.Windows.Forms.Label lbl_date;
