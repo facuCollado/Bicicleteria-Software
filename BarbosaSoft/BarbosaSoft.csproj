@@ -81,11 +81,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Vista\Ventas-Form.cs">
+    <Compile Include="Vista\frmVentas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vista\Ventas-Form.Designer.cs">
-      <DependentUpon>Ventas-Form.cs</DependentUpon>
+    <Compile Include="Vista\frmVentas.Designer.cs">
+      <DependentUpon>frmVentas.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Vista\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -109,8 +109,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Vista\Ventas-Form.resx">
-      <DependentUpon>Ventas-Form.cs</DependentUpon>
+    <EmbeddedResource Include="Vista\frmVentas.resx">
+      <DependentUpon>frmVentas.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="BicicleteriaDBDataSet.xsc">
       <DependentUpon>BicicleteriaDBDataSet.xsd</DependentUpon>

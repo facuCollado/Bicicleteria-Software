@@ -1007,6 +1007,8 @@ namespace BarbosaSoft {
             
             private global::System.Data.DataColumn columnFechaPedido;
             
+            private global::System.Data.DataColumn columnEntregaPedido;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public PedidosDataTable() {
@@ -1114,6 +1116,14 @@ namespace BarbosaSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn EntregaPedidoColumn {
+                get {
+                    return this.columnEntregaPedido;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1149,7 +1159,7 @@ namespace BarbosaSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public PedidosRow AddPedidosRow(string NombreCliente, string ApellidoCliente, string Telefono, int Dni, string Descripcion, double Total, bool Terminado, System.DateTime FechaPedido) {
+            public PedidosRow AddPedidosRow(string NombreCliente, string ApellidoCliente, string Telefono, int Dni, string Descripcion, double Total, bool Terminado, System.DateTime FechaPedido, System.DateTime EntregaPedido) {
                 PedidosRow rowPedidosRow = ((PedidosRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1160,7 +1170,8 @@ namespace BarbosaSoft {
                         Descripcion,
                         Total,
                         Terminado,
-                        FechaPedido};
+                        FechaPedido,
+                        EntregaPedido};
                 rowPedidosRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPedidosRow);
                 return rowPedidosRow;
@@ -1199,6 +1210,7 @@ namespace BarbosaSoft {
                 this.columnTotal = base.Columns["Total"];
                 this.columnTerminado = base.Columns["Terminado"];
                 this.columnFechaPedido = base.Columns["FechaPedido"];
+                this.columnEntregaPedido = base.Columns["EntregaPedido"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1222,6 +1234,8 @@ namespace BarbosaSoft {
                 base.Columns.Add(this.columnTerminado);
                 this.columnFechaPedido = new global::System.Data.DataColumn("FechaPedido", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFechaPedido);
+                this.columnEntregaPedido = new global::System.Data.DataColumn("EntregaPedido", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEntregaPedido);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -1790,6 +1804,22 @@ namespace BarbosaSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public System.DateTime EntregaPedido {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tablePedidos.EntregaPedidoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'EntregaPedido\' de la tabla \'Pedidos\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePedidos.EntregaPedidoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsNombreClienteNull() {
                 return this.IsNull(this.tablePedidos.NombreClienteColumn);
             }
@@ -1882,6 +1912,18 @@ namespace BarbosaSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetFechaPedidoNull() {
                 this[this.tablePedidos.FechaPedidoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsEntregaPedidoNull() {
+                return this.IsNull(this.tablePedidos.EntregaPedidoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetEntregaPedidoNull() {
+                this[this.tablePedidos.EntregaPedidoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2935,10 +2977,11 @@ namespace BarbosaSoft.BicicleteriaDBDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Total", "Total");
             tableMapping.ColumnMappings.Add("Terminado", "Terminado");
             tableMapping.ColumnMappings.Add("FechaPedido", "FechaPedido");
+            tableMapping.ColumnMappings.Add("EntregaPedido", "EntregaPedido");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `Pedidos` WHERE ((`Id` = ?) AND ((? = 1 AND `NombreCliente` IS NULL) OR (`NombreCliente` = ?)) AND ((? = 1 AND `ApellidoCliente` IS NULL) OR (`ApellidoCliente` = ?)) AND ((? = 1 AND `Dni` IS NULL) OR (`Dni` = ?)) AND ((? = 1 AND `Total` IS NULL) OR (`Total` = ?)) AND ((? = 1 AND `Terminado` IS NULL) OR (`Terminado` = ?)) AND ((? = 1 AND `FechaPedido` IS NULL) OR (`FechaPedido` = ?)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `Pedidos` WHERE ((`Id` = ?) AND ((? = 1 AND `NombreCliente` IS NULL) OR (`NombreCliente` = ?)) AND ((? = 1 AND `ApellidoCliente` IS NULL) OR (`ApellidoCliente` = ?)) AND ((? = 1 AND `Dni` IS NULL) OR (`Dni` = ?)) AND ((? = 1 AND `Total` IS NULL) OR (`Total` = ?)) AND ((? = 1 AND `Terminado` IS NULL) OR (`Terminado` = ?)) AND ((? = 1 AND `FechaPedido` IS NULL) OR (`FechaPedido` = ?)) AND ((? = 1 AND `EntregaPedido` IS NULL) OR (`EntregaPedido` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Id", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Id", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_NombreCliente", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NombreCliente", global::System.Data.DataRowVersion.Original, true, null));
@@ -2953,11 +2996,13 @@ namespace BarbosaSoft.BicicleteriaDBDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Terminado", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Terminado", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_FechaPedido", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FechaPedido", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_FechaPedido", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FechaPedido", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_EntregaPedido", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EntregaPedido", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_EntregaPedido", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EntregaPedido", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO `Pedidos` (`NombreCliente`, `ApellidoCliente`, `Telefono`, `Dni`, `De" +
-                "scripcion`, `Total`, `Terminado`, `FechaPedido`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)" +
-                "";
+                "scripcion`, `Total`, `Terminado`, `FechaPedido`, `EntregaPedido`) VALUES (?, ?, " +
+                "?, ?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("NombreCliente", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NombreCliente", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ApellidoCliente", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ApellidoCliente", global::System.Data.DataRowVersion.Current, false, null));
@@ -2967,9 +3012,10 @@ namespace BarbosaSoft.BicicleteriaDBDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Total", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Total", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Terminado", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Terminado", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FechaPedido", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FechaPedido", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("EntregaPedido", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EntregaPedido", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `Pedidos` SET `NombreCliente` = ?, `ApellidoCliente` = ?, `Telefono` = ?, `Dni` = ?, `Descripcion` = ?, `Total` = ?, `Terminado` = ?, `FechaPedido` = ? WHERE ((`Id` = ?) AND ((? = 1 AND `NombreCliente` IS NULL) OR (`NombreCliente` = ?)) AND ((? = 1 AND `ApellidoCliente` IS NULL) OR (`ApellidoCliente` = ?)) AND ((? = 1 AND `Dni` IS NULL) OR (`Dni` = ?)) AND ((? = 1 AND `Total` IS NULL) OR (`Total` = ?)) AND ((? = 1 AND `Terminado` IS NULL) OR (`Terminado` = ?)) AND ((? = 1 AND `FechaPedido` IS NULL) OR (`FechaPedido` = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `Pedidos` SET `NombreCliente` = ?, `ApellidoCliente` = ?, `Telefono` = ?, `Dni` = ?, `Descripcion` = ?, `Total` = ?, `Terminado` = ?, `FechaPedido` = ?, `EntregaPedido` = ? WHERE ((`Id` = ?) AND ((? = 1 AND `NombreCliente` IS NULL) OR (`NombreCliente` = ?)) AND ((? = 1 AND `ApellidoCliente` IS NULL) OR (`ApellidoCliente` = ?)) AND ((? = 1 AND `Dni` IS NULL) OR (`Dni` = ?)) AND ((? = 1 AND `Total` IS NULL) OR (`Total` = ?)) AND ((? = 1 AND `Terminado` IS NULL) OR (`Terminado` = ?)) AND ((? = 1 AND `FechaPedido` IS NULL) OR (`FechaPedido` = ?)) AND ((? = 1 AND `EntregaPedido` IS NULL) OR (`EntregaPedido` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("NombreCliente", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NombreCliente", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ApellidoCliente", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ApellidoCliente", global::System.Data.DataRowVersion.Current, false, null));
@@ -2979,6 +3025,7 @@ namespace BarbosaSoft.BicicleteriaDBDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Total", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Total", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Terminado", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Terminado", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FechaPedido", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FechaPedido", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("EntregaPedido", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EntregaPedido", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Id", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Id", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_NombreCliente", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NombreCliente", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_NombreCliente", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NombreCliente", global::System.Data.DataRowVersion.Original, false, null));
@@ -2992,6 +3039,8 @@ namespace BarbosaSoft.BicicleteriaDBDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Terminado", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Terminado", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_FechaPedido", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FechaPedido", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_FechaPedido", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FechaPedido", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_EntregaPedido", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EntregaPedido", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_EntregaPedido", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EntregaPedido", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3008,7 +3057,7 @@ namespace BarbosaSoft.BicicleteriaDBDataSetTableAdapters {
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT Id, NombreCliente, ApellidoCliente, Telefono, Dni, Descripcion, Total, Ter" +
-                "minado, FechaPedido FROM Pedidos";
+                "minado, FechaPedido, EntregaPedido FROM Pedidos";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3069,7 +3118,7 @@ namespace BarbosaSoft.BicicleteriaDBDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, string Original_NombreCliente, string Original_ApellidoCliente, global::System.Nullable<int> Original_Dni, global::System.Nullable<double> Original_Total, bool Original_Terminado, global::System.Nullable<global::System.DateTime> Original_FechaPedido) {
+        public virtual int Delete(int Original_Id, string Original_NombreCliente, string Original_ApellidoCliente, global::System.Nullable<int> Original_Dni, global::System.Nullable<double> Original_Total, bool Original_Terminado, global::System.Nullable<global::System.DateTime> Original_FechaPedido, global::System.Nullable<global::System.DateTime> Original_EntregaPedido) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
             if ((Original_NombreCliente == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
@@ -3113,6 +3162,14 @@ namespace BarbosaSoft.BicicleteriaDBDataSetTableAdapters {
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
+            if ((Original_EntregaPedido.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((System.DateTime)(Original_EntregaPedido.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3133,7 +3190,7 @@ namespace BarbosaSoft.BicicleteriaDBDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string NombreCliente, string ApellidoCliente, string Telefono, global::System.Nullable<int> Dni, string Descripcion, global::System.Nullable<double> Total, bool Terminado, global::System.Nullable<global::System.DateTime> FechaPedido) {
+        public virtual int Insert(string NombreCliente, string ApellidoCliente, string Telefono, global::System.Nullable<int> Dni, string Descripcion, global::System.Nullable<double> Total, bool Terminado, global::System.Nullable<global::System.DateTime> FechaPedido, global::System.Nullable<global::System.DateTime> EntregaPedido) {
             if ((NombreCliente == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -3177,6 +3234,12 @@ namespace BarbosaSoft.BicicleteriaDBDataSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
+            if ((EntregaPedido.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((System.DateTime)(EntregaPedido.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3197,7 +3260,24 @@ namespace BarbosaSoft.BicicleteriaDBDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string NombreCliente, string ApellidoCliente, string Telefono, global::System.Nullable<int> Dni, string Descripcion, global::System.Nullable<double> Total, bool Terminado, global::System.Nullable<global::System.DateTime> FechaPedido, int Original_Id, string Original_NombreCliente, string Original_ApellidoCliente, global::System.Nullable<int> Original_Dni, global::System.Nullable<double> Original_Total, bool Original_Terminado, global::System.Nullable<global::System.DateTime> Original_FechaPedido) {
+        public virtual int Update(
+                    string NombreCliente, 
+                    string ApellidoCliente, 
+                    string Telefono, 
+                    global::System.Nullable<int> Dni, 
+                    string Descripcion, 
+                    global::System.Nullable<double> Total, 
+                    bool Terminado, 
+                    global::System.Nullable<global::System.DateTime> FechaPedido, 
+                    global::System.Nullable<global::System.DateTime> EntregaPedido, 
+                    int Original_Id, 
+                    string Original_NombreCliente, 
+                    string Original_ApellidoCliente, 
+                    global::System.Nullable<int> Original_Dni, 
+                    global::System.Nullable<double> Original_Total, 
+                    bool Original_Terminado, 
+                    global::System.Nullable<global::System.DateTime> Original_FechaPedido, 
+                    global::System.Nullable<global::System.DateTime> Original_EntregaPedido) {
             if ((NombreCliente == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -3241,48 +3321,62 @@ namespace BarbosaSoft.BicicleteriaDBDataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_Id));
-            if ((Original_NombreCliente == null)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            if ((EntregaPedido.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(EntregaPedido.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_NombreCliente));
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_Id));
+            if ((Original_NombreCliente == null)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_NombreCliente));
             }
             if ((Original_ApellidoCliente == null)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_ApellidoCliente));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_ApellidoCliente));
             }
             if ((Original_Dni.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_Dni.Value));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_Dni.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             if ((Original_Total.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((double)(Original_Total.Value));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((double)(Original_Total.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[18].Value = ((bool)(Original_Terminado));
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((bool)(Original_Terminado));
             if ((Original_FechaPedido.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((System.DateTime)(Original_FechaPedido.Value));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((System.DateTime)(Original_FechaPedido.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
+            }
+            if ((Original_EntregaPedido.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((System.DateTime)(Original_EntregaPedido.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 

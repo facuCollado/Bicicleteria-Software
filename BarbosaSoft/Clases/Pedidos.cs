@@ -17,6 +17,7 @@ namespace BarbosaSoft.Clases
         private double total;
         private bool terminado;
         private DateTime fechaPedido;
+        private DateTime fechaEntrega;
 
         public int Id { get => id; set => id = value; }
         public string NombreCliente { get => nombreCliente; set => nombreCliente = value; }
@@ -27,5 +28,6 @@ namespace BarbosaSoft.Clases
         public double Total { get => total; set => total = value; }
         public bool Terminado { get => terminado; set => terminado = value; } 
         public DateTime FechaPedido { get => fechaPedido; set => fechaPedido = value; }
+        public DateTime FechaEntrega { get => fechaEntrega; set => fechaEntrega= value; }
     }
 }

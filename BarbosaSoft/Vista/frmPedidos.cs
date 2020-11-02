@@ -12,7 +12,7 @@ namespace BarbosaSoft
     public partial class Pedidos_Form : Form
     {
         //iniciamos la conexion
-        OleDbConnection con = new OleDbConnection(@"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = C:\Users\Usuario\Documents\Dev\Desktop\WindowsForm\Bicicleteria-Software-Dev-Emi\BarbosaSoft\BicicleteriaDB.accdb");
+        OleDbConnection con = new OleDbConnection(@"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = C:\Users\Usuario\Documents\Dev\Desktop\WindowsForm\Bicicleteria-Software-main\BarbosaSoft\BicicleteriaDB.accdb");
         List<Pedidos> pedidos = new List<Pedidos>();
 
         public Pedidos_Form()
@@ -66,6 +66,7 @@ namespace BarbosaSoft
                         c.Total = r.GetDouble(6);
                         c.Terminado = r.GetBoolean(7);
                         c.FechaPedido = r.GetDateTime(8);
+                        c.FechaEntrega= r.GetDateTime(9);
                         pedidos.Add(c);
                     }
 
@@ -82,13 +83,11 @@ namespace BarbosaSoft
                             pedidos[i].Descripcion,
                             pedidos[i].Total,
                             pedidos[i].Terminado,
-                            pedidos[i].FechaPedido.ToString("dd/MM/yyyy"));
+                            pedidos[i].FechaPedido.ToString("dd/MM/yyyy"),
+                            pedidos[i].FechaEntrega.ToString("dd/MM/yyyy"));
                     }
 
-                    pedidos.Clear();
-
-                    tablaPedidos_CellClick(this, null);
-
+                    pedidos.Clear();                  
                 }
                 else // No hay filas para leer
                 {
@@ -102,14 +101,23 @@ namespace BarbosaSoft
         //Inicializamos la grilla
         private void inicializarTablaPedidos()
         {
-            tablaPedidos.AllowUserToAddRows = false;
+           tablaPedidos.AllowUserToAddRows = false;
             tablaPedidos.AllowUserToDeleteRows = false;
             tablaPedidos.AllowUserToOrderColumns = false;
             tablaPedidos.ReadOnly = true;
             tablaPedidos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            tablaPedidos.EditMode = DataGridViewEditMode.EditProgrammatically;
+            //tablaPedidos.EditMode = DataGridViewEditMode.EditProgrammatically;
             tablaPedidos.MultiSelect = false;
+            tablaPedidos.AutoResizeColumns();
+            tablaPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
+            //agrego el checkbox de terminado
+            DataGridViewCheckBoxColumn checkTerminado = new DataGridViewCheckBoxColumn();
+            checkTerminado.ValueType = typeof(bool);
+            checkTerminado.ReadOnly = false;
+            checkTerminado.Name = "Terminado";
+            checkTerminado.HeaderText = "Terminado";
+            
             tablaPedidos.Columns.Add("id", "Id");
             tablaPedidos.Columns.Add("nombre", "Nombre");
             tablaPedidos.Columns.Add("apellido", "Apellido");
@@ -117,8 +125,10 @@ namespace BarbosaSoft
             tablaPedidos.Columns.Add("dni", "Dni");
             tablaPedidos.Columns.Add("descripcion", "Descripcion");
             tablaPedidos.Columns.Add("total", "Total");
-            tablaPedidos.Columns.Add("terminado", "Terminado");
+            tablaPedidos.Columns.Add(checkTerminado);
             tablaPedidos.Columns.Add("fecha", "Fecha");
+            tablaPedidos.Columns.Add("fechaEntrega", "Fecha Entrega");
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -126,16 +136,7 @@ namespace BarbosaSoft
             lbl_time.Text = DateTime.Now.ToLongTimeString();
             timer1.Start();
         }
-
-        //Volver al menú
-        private void btn_back_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Form1 f1 = new Form1();
-            f1.ShowDialog();
-            this.Close();
-        }
-
+     
         //Busca por dni apretando enter
         private void txtDni_KeyDown(object sender, KeyEventArgs e)
         {
@@ -165,6 +166,7 @@ namespace BarbosaSoft
             txtTelefono.Text = "";
             txtDescripcion.Text = "";
             txtTotal.Text = "";
+            
         }
 
         //Nuevo pedido
@@ -187,14 +189,15 @@ namespace BarbosaSoft
                     string desc = txtDescripcion.Text;
                     double total = Convert.ToDouble(txtTotal.Text);
                     //obtengo la fecha
-                    string fecha = DateTime.Now.ToString("dd/MM/yyyy");
-
-
+                    string fecha = DateTime.Now.ToString("dd/MM/yyyy"); 
+                    string fecha_Entrega = dateTime_Entrega.Value.ToString("dd/MM/yyyy");
+                  
 
                     //Escribimos el comando de inserción
                     //El ID del cliente es autonumérico por lo cual no necesitamos establecerlo
 
-                    string strinsert = "INSERT into Pedidos (NombreCliente, ApellidoCliente, Telefono, Dni, Descripcion, Total, FechaPedido) Values(@nom, @ape, @tel, @dni, @desc, @total, @date)";
+                    string strinsert = "INSERT into Pedidos (NombreCliente, ApellidoCliente, Telefono, Dni, Descripcion, Total, FechaPedido, EntregaPedido)" +
+                        " Values(@nom, @ape, @tel, @dni, @desc, @total, @date, @returnDate)";
                     OleDbCommand cmd = new OleDbCommand(strinsert, con);
                     //Establecemos los parámetros que se utilizarán en el comando Insert
 
@@ -205,6 +208,7 @@ namespace BarbosaSoft
                     cmd.Parameters.AddWithValue("desc", desc);
                     cmd.Parameters.AddWithValue("total", total);
                     cmd.Parameters.AddWithValue("date", fecha);
+                    cmd.Parameters.AddWithValue("returnDate", fecha_Entrega);
 
                     try
                     {
@@ -226,8 +230,7 @@ namespace BarbosaSoft
                         if (MessageBox.Show("DNI no encontrado en la base de datos, ¿desea agregarlo?",
                             "DNI nuevo", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                         {
-                            //si la respuesta es SI lo mando al cliente
-                            //creo instancia del form Clientes
+                            //si la respuesta es SI lo mando al form Clientes
                             this.Hide();
                             frmClientes clientes = new frmClientes();
                             clientes.txtDni.Text = txtDni.Text;
@@ -272,6 +275,7 @@ namespace BarbosaSoft
                     c.Total = r.GetDouble(6);
                     c.Terminado = r.GetBoolean(7);
                     c.FechaPedido = r.GetDateTime(8);
+                    c.FechaEntrega = r.GetDateTime(9);
 
                     pedidos.Add(c);
                 }
@@ -288,7 +292,8 @@ namespace BarbosaSoft
                         pedidos[i].Descripcion,
                         pedidos[i].Total,
                         pedidos[i].Terminado,
-                        pedidos[i].FechaPedido.ToString("dd/MM/yyyy"));
+                        pedidos[i].FechaPedido.ToString("dd/MM/yyyy"),
+                        pedidos[i].FechaEntrega.ToString("dd/MM/yyyy"));
                 }
 
                 pedidos.Clear();
@@ -308,6 +313,46 @@ namespace BarbosaSoft
             txtDni.Text = tablaPedidos.CurrentRow.Cells[4].Value.ToString();
             txtDescripcion.Text = tablaPedidos.CurrentRow.Cells[5].Value.ToString();
             txtTotal.Text = tablaPedidos.CurrentRow.Cells[6].Value.ToString();
+        }
+        
+        //Volver al menú
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form1 f1 = new Form1();
+            f1.ShowDialog();
+            this.Close();
+        }
+
+        private void tablaPedidos_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.ColumnIndex == 7)
+            {
+                tablaPedidos.ReadOnly = false;
+                //obtengo el valor del bool
+                bool terminado = Convert.ToBoolean(this.tablaPedidos[e.ColumnIndex, e.RowIndex].Value.ToString());
+                terminado = !terminado;
+                int id = Convert.ToInt32(tablaPedidos.CurrentRow.Cells[0].Value.ToString());
+                
+                string strinsert = "Update Pedidos Set Terminado = "+ terminado +" WHERE Id = @id";
+               
+               OleDbCommand update = new OleDbCommand(strinsert, con);
+                //Establecemos los parámetros que se utilizarán en el comando Insert
+                update.Parameters.AddWithValue("id", id);
+                update.Parameters.AddWithValue("terminado", true );
+
+                try
+                {
+                    update.ExecuteNonQuery(); //Ejecutamos el comando
+                    MessageBox.Show("Actualizado");
+                }
+                catch (OleDbException ex)
+                {
+                    MessageBox.Show("Error al insertar los datos: " + ex);
+                }
+                actualizarTablaPedidos();
+
+            }
         }
     }
 }
