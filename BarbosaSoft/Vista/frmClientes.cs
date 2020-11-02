@@ -15,7 +15,7 @@ namespace BarbosaSoft.Vista
     public partial class frmClientes : Form
     {
         //iniciamos la conexion
-        OleDbConnection con = new OleDbConnection(@"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = C:\Users\Usuario\Documents\Dev\Desktop\WindowsForm\Bicicleteria-Software-Dev-Emi\BarbosaSoft\BicicleteriaDB.accdb");
+        OleDbConnection con = new OleDbConnection(@"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = D:\VS Projects\Bicicleteria-Software\BarbosaSoft\BicicleteriaDB.accdb");
         List<Clientes> clientes = new List<Clientes>(); //almacenará una lista de objetos clientes
 
         public frmClientes()
@@ -83,9 +83,7 @@ namespace BarbosaSoft.Vista
                         clientes[i].Telefono);
                     }
 
-                    clientes.Clear(); //limpio la lista de clientes para utilizarla en otros lugares
-
-              
+                    clientes.Clear();          
 
                 }
                 else // No hay filas para leer
@@ -107,6 +105,8 @@ namespace BarbosaSoft.Vista
             tablaclientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             tablaclientes.EditMode = DataGridViewEditMode.EditProgrammatically;
             tablaclientes.MultiSelect = false;
+            tablaclientes.AutoResizeColumns();
+            tablaclientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             tablaclientes.Columns.Add("id", "Id");
             tablaclientes.Columns.Add("nombre", "Nombre");
@@ -202,6 +202,7 @@ namespace BarbosaSoft.Vista
                     try
                     {
                         cmd.ExecuteNonQuery(); //Ejecutamos el comando
+                        MessageBox.Show("Nuevo cliente agregado");
                     }
                     catch (OleDbException ex)
                     {

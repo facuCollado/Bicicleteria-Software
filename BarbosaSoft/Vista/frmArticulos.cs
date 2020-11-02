@@ -13,9 +13,8 @@ namespace BarbosaSoft
 {
     public partial class frmArticulos : Form
     {
-
         //iniciamos la conexion
-        OleDbConnection con = new OleDbConnection(@"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = C:\Users\Usuario\Documents\Dev\Desktop\WindowsForm\Bicicleteria-Software-Dev-Emi\BarbosaSoft\BicicleteriaDB.accdb");
+        OleDbConnection con = new OleDbConnection(@"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = D:\VS Projects\Bicicleteria-Software\BarbosaSoft\BicicleteriaDB.accdb");
         List<Articulos> articulos = new List<Articulos>();  //almacenará una lista de objetos articulos
 
         public frmArticulos()
@@ -71,14 +70,8 @@ namespace BarbosaSoft
                     {
                         tablaArticulos.Rows.Add(articulos[i].Codigo, articulos[i].Nombre, articulos[i].Precio);
                     }
+                    articulos.Clear();
 
-                    articulos.Clear(); //limpio la lista de articulos para utilizarla en otros lugares
-
-                    //Por defecto siempre hay una fila seleccionada así que cargamos los datos
-                    //de esa fila en los textbox
-                    txtCodigo.Text = tablaArticulos.CurrentRow.Cells[0].Value.ToString();
-                    txtNombre.Text = tablaArticulos.CurrentRow.Cells[1].Value.ToString();
-                    txtPrecio.Text = tablaArticulos.CurrentRow.Cells[2].Value.ToString();
                 }
                 else // No hay filas para leer
                 {
@@ -98,6 +91,8 @@ namespace BarbosaSoft
             tablaArticulos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             tablaArticulos.EditMode = DataGridViewEditMode.EditProgrammatically;
             tablaArticulos.MultiSelect = false;
+            tablaArticulos.AutoResizeColumns();
+            tablaArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             tablaArticulos.Columns.Add("codigo", "Codigo");
             tablaArticulos.Columns.Add("nombre", "Nombre");
@@ -167,10 +162,16 @@ namespace BarbosaSoft
                     //Establecemos los parámetros que se utilizarán en el comando Insert
                     cmd.Parameters.AddWithValue("nom", nombre);
                     cmd.Parameters.AddWithValue("pre", precio);
-
-                    cmd.ExecuteNonQuery(); //Ejecutamos el comando
-
-                    MessageBox.Show("Registro agregado!");
+                    
+                    try
+                    {
+                        cmd.ExecuteNonQuery(); //Ejecutamos el comando
+                        MessageBox.Show("Nuevo articulo agregado");
+                    }
+                    catch (OleDbException ex)
+                    {
+                        MessageBox.Show("Error al insertar los datos: " + ex);
+                    }
 
                     //Actualizamos la grilla y limpiamos los campos
                     try

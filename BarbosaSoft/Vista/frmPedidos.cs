@@ -12,7 +12,7 @@ namespace BarbosaSoft
     public partial class Pedidos_Form : Form
     {
         //iniciamos la conexion
-        OleDbConnection con = new OleDbConnection(@"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = C:\Users\Usuario\Documents\Dev\Desktop\WindowsForm\Bicicleteria-Software-Dev-Emi\BarbosaSoft\BicicleteriaDB.accdb");
+        OleDbConnection con = new OleDbConnection(@"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = D:\VS Projects\Bicicleteria-Software\BarbosaSoft\BicicleteriaDB.accdb");
         List<Pedidos> pedidos = new List<Pedidos>();
 
         public Pedidos_Form()
@@ -85,10 +85,7 @@ namespace BarbosaSoft
                             pedidos[i].FechaPedido.ToString("dd/MM/yyyy"));
                     }
 
-                    pedidos.Clear();
-
-                    tablaPedidos_CellClick(this, null);
-
+                    pedidos.Clear();                  
                 }
                 else // No hay filas para leer
                 {
@@ -109,7 +106,9 @@ namespace BarbosaSoft
             tablaPedidos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             tablaPedidos.EditMode = DataGridViewEditMode.EditProgrammatically;
             tablaPedidos.MultiSelect = false;
-
+            tablaPedidos.AutoResizeColumns();
+            tablaPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            
             tablaPedidos.Columns.Add("id", "Id");
             tablaPedidos.Columns.Add("nombre", "Nombre");
             tablaPedidos.Columns.Add("apellido", "Apellido");
@@ -126,16 +125,7 @@ namespace BarbosaSoft
             lbl_time.Text = DateTime.Now.ToLongTimeString();
             timer1.Start();
         }
-
-        //Volver al menú
-        private void btn_back_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Form1 f1 = new Form1();
-            f1.ShowDialog();
-            this.Close();
-        }
-
+     
         //Busca por dni apretando enter
         private void txtDni_KeyDown(object sender, KeyEventArgs e)
         {
@@ -188,7 +178,6 @@ namespace BarbosaSoft
                     double total = Convert.ToDouble(txtTotal.Text);
                     //obtengo la fecha
                     string fecha = DateTime.Now.ToString("dd/MM/yyyy");
-
 
 
                     //Escribimos el comando de inserción
@@ -308,6 +297,15 @@ namespace BarbosaSoft
             txtDni.Text = tablaPedidos.CurrentRow.Cells[4].Value.ToString();
             txtDescripcion.Text = tablaPedidos.CurrentRow.Cells[5].Value.ToString();
             txtTotal.Text = tablaPedidos.CurrentRow.Cells[6].Value.ToString();
+        }
+        
+        //Volver al menú
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form1 f1 = new Form1();
+            f1.ShowDialog();
+            this.Close();
         }
     }
 }
